@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=0.86">
+		<meta name="description" content="Nico Covert · nicovert">
+		<title>Selective Password Generator</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body id="root">
+		<div class="content">
+			<h1 class="headerTitle">Password</h1>
+			<input id="inputPassword" readonly>
+			<input type="button" id="buttonRefresh" value="Refresh">
+			<h4 class="headerOptions">Options</h4>
+			<div class="options">
+				<div class="option">
+					<div class="optionLine">
+						<p class="optionText">Length</p>
+						<input type="number" id="numLength" class="optionInputNum" min="0" value="12">
+					</div>
+				</div>
+				<div class="option">
+					<div class="optionLine">
+						<p class="optionText">Uppercase</p>
+						<input type="checkbox" id="checkUpper" checked>
+					</div>
+					<div class="optionLine">
+						<input id="inputUpper" class="optionInput" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ">
+					</div>
+					<div class="optionLine">
+						<p class="optionText">#</p>
+						<input type="number" id="numUpper" class="optionInputNum" min="0" value="2">
+					</div>
+				</div>
+				<div class="option">
+					<div class="optionLine">
+						<p class="optionText">Lowercase</p>
+						<input type="checkbox" id="checkLower" checked>
+					</div>
+					<div class="optionLine">
+						<input id="inputLower" class="optionInput" value="abcdefghijklmnopqrstuvwxyz">
+					</div>
+					<div class="optionLine">
+						<p class="optionText">#</p>
+						<input type="number" id="numLower" class="optionInputNum" min="0" value="2">
+					</div>
+				</div>
+				<div class="option">
+					<div class="optionLine">
+						<p class="optionText">Numerics</p>
+						<input type="checkbox" id="checkNums" checked>
+					</div>
+					<div class="optionLine">
+						<input id="inputNums" class="optionInput" value="1234567890">
+					</div>
+					<div class="optionLine">
+						<p class="optionText">#</p>
+						<input type="number" id="numNums" class="optionInputNum" min="0" value="2">
+					</div>
+				</div>
+				<div class="option">
+					<div class="optionLine">
+						<p class="optionText">Specials</p>
+						<input type="checkbox" id="checkSpecials" checked>
+					</div>
+					<div class="optionLine">
+						<input id="inputSpecials" class="optionInput" value="!@#$%^&*?">
+					</div>
+					<div class="optionLine">
+						<p class="optionText">#</p>
+						<input type="number" id="numSpecials" class="optionInputNum" min="0" value="2">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="script.js"></script>
+</html>
