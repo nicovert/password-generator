@@ -1,6 +1,8 @@
 //Functions
 const refreshPassword = () => {
-	const password = generate(getOptionsObject())
+	const options = getOptionsObject()
+	setCookie(options);
+	const password = generate(options)
 	document.getElementById("inputPassword").value = password
 }
 
@@ -89,6 +91,48 @@ const generate = (options) => {
 	
 }
 
+const setCookie = (options) => {
+	const date = new Date()
+		  date.setTime(2147483647 * 1000)
+	const expiresString = `expires=${date.toUTCString()}`
+
+	document.cookie = `numLength=${options.length}; ${expiresString};`
+
+	document.cookie = `checkUpper=${options.upper};${expiresString};`
+	document.cookie = `numUpper=${options.numUpper};${expiresString};`
+	document.cookie = `inputUpper=${options.validUpper};${expiresString};`
+
+	document.cookie = `checkLower=${options.lower};${expiresString};`
+	document.cookie = `numLower=${options.numLower};${expiresString};`
+	document.cookie = `inputLower=${options.validLower};${expiresString};`
+
+	document.cookie = `checkNums=${options.nums};${expiresString};`
+	document.cookie = `numNums=${options.numNums};${expiresString};`
+	document.cookie = `inputNums=${options.validNums};${expiresString};`
+
+	document.cookie = `checkSpecials=${options.special};${expiresString};`
+	document.cookie = `numSpecials=${options.numSpecial};${expiresString};`
+	document.cookie = `inputSpecials=${options.validSpecial};${expiresString};`
+}
+
+const getCookie = () => {
+	const cookieArr = document.cookie.split(";")
+	if (cookieArr[0] === '') return;
+
+	for (var i = cookieArr.length - 1; i >= 0; i--) {
+		const cookie = cookieArr[i].split("=")
+		const name = cookie[0].trim()
+		const value = cookie[1].trim()
+		if (name.startsWith("check")) {
+			const bool = value === "true" ? true : false
+			document.getElementById(name).checked = bool
+		} else {
+			document.getElementById(name).value = value
+		}
+	}
+}
 
 //Listeners
 document.getElementById("buttonRefresh").addEventListener("click", refreshPassword)
+window.addEventListener("load", getCookie)
+window.addEventListener("load", refreshPassword)
