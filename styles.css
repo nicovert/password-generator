@@ -3,6 +3,11 @@
 	justify-content: center;
 }
 
+.dark {
+	background-color: #282828;
+	color: #FFFFFF;
+}
+
 .headerTitle {
 	height: 30px;
 	margin-bottom: 20px;

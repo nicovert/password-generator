@@ -25,6 +25,8 @@ const getOptionsObject = () => {
 		special: document.getElementById("checkSpecials").checked,
 		numSpecial: document.getElementById("numSpecials").value,
 		validSpecial: document.getElementById("inputSpecials").value,
+		//Dark Mode
+		dark: document.getElementById("checkDark").checked,
 	}
 	
 	return options;
@@ -113,6 +115,8 @@ const setCookie = (options) => {
 	document.cookie = `checkSpecials=${options.special};${expiresString};`
 	document.cookie = `numSpecials=${options.numSpecial};${expiresString};`
 	document.cookie = `inputSpecials=${options.validSpecial};${expiresString};`
+
+	document.cookie = `checkDark=${options.dark};${expiresString};`
 }
 
 const getCookie = () => {
@@ -132,7 +136,25 @@ const getCookie = () => {
 	}
 }
 
+const updateTheme = () => {
+	const dark = document.getElementById("checkDark").checked
+	const elements = document.getElementsByTagName("*")
+
+	if (dark) {
+		for (var i = elements.length - 1; i >= 0; i--) {
+			if (!elements[i].classList.contains("dark"))
+				elements[i].classList.add("dark")
+		}
+	} else {
+		for (var i = elements.length - 1; i >= 0; i--) {
+			elements[i].classList.remove("dark")
+		}
+	}
+}
+
 //Listeners
 document.getElementById("buttonRefresh").addEventListener("click", refreshPassword)
+document.getElementById("checkDark").addEventListener("change", updateTheme)
 window.addEventListener("load", getCookie)
 window.addEventListener("load", refreshPassword)
+window.addEventListener("load", updateTheme)
